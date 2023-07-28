@@ -1,0 +1,2 @@
+Application Version: ${cassiopeia.version}
+Spring Boot Version: ${spring-boot.version}

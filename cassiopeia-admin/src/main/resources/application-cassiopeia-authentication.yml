@@ -1,0 +1,6 @@
+# 项目令牌相关配置
+cassiopeia:
+  token:
+    header: ${TOKEN_HEADER:Authorization}
+    secret: ${TOKEN_SECRET:abcdefghijklmnopqrstuvwxyz}
+    expireTime: ${TOKEN_EXPIRE_TIME:30}

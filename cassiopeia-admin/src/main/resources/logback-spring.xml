@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <contextName>logback</contextName>
+
+    <springProperty scope="context" name="springAppName" source="spring.application.name"/>
+
+    <property name="LOG_FILE" value="${springAppName:-}"/>
+
+    <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter"/>
+    <conversionRule conversionWord="wEx"
+                    converterClass="org.springframework.boot.logging.logback.ExtendedWhitespaceThrowableProxyConverter"/>
+    <property name="FILE_LOG_PATTERN"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${PID:-} --- [%15.15t] %-40.40logger{39} : %m%n"
+    />
+    <property name="CONSOLE_LOG_PATTERN"
+              value="%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr([${LOG_FILE},%X{X-B3-TraceId:-},%X{X-B3-SpanId:-},%X{X-Span-Export:-}]){yellow} %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"
+    />
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>./logs/${LOG_FILE}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>./logs/${LOG_FILE}-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxFileSize>100MB</maxFileSize>
+            <maxHistory>7</maxHistory>
+            <totalSizeCap>1GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${FILE_LOG_PATTERN}</pattern>
+            <charset>utf8</charset>
+        </encoder>
+    </appender>
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder charset="UTF-8">
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <springProfile name="dev">
+        <logger name="druid.sql.Statement" level="debug"/>
+        <logger name="java.sql.PreparedStatement" level="debug"/>
+        <logger name="org.springframework.web.servlet.DispatcherServlet" level="debug"/>
+        <logger name="xyz.vcluster.cassiopeia" level="debug"/>
+        <logger name="xyz.vcluster.cassiopeia.common.utils.http.HttpUtils" level="info"/>
+
+        <root level="info">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="FILE"/>
+        </root>
+    </springProfile>
+
+    <springProfile name="local">
+        <logger name="druid.sql.Statement" level="debug"/>
+        <logger name="java.sql.PreparedStatement" level="debug"/>
+        <logger name="org.springframework.web.servlet.DispatcherServlet" level="debug"/>
+        <logger name="xyz.vcluster.cassiopeia" level="debug"/>
+        <logger name="xyz.vcluster.cassiopeia.common.utils.http.HttpUtils" level="info"/>
+
+        <root level="info">
+            <appender-ref ref="FILE"/>
+        </root>
+    </springProfile>
+
+    <springProfile name="pre">
+        <logger name="xyz.vcluster.cassiopeia" level="info"/>
+
+        <root level="warn">
+            <appender-ref ref="FILE"/>
+        </root>
+    </springProfile>
+
+    <springProfile name="prod">
+        <root level="warn">
+            <appender-ref ref="FILE"/>
+        </root>
+    </springProfile>
+</configuration>

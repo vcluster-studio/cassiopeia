@@ -1,0 +1,26 @@
+# 项目相关配置
+cassiopeia:
+  # 名称
+  name: ${PROJECT_NAME:Cassiopeia}
+  # 版本
+  version: ${PROJECT_VERSION:2.0.0-slim}
+  # 版权年份
+  copyrightYear: ${PROJECT_COPYRIGHT_YEAR:2021}
+  # 实例演示开关
+  demoEnabled: false
+  # 存储类型
+  storageType: ${STORAGE_TYPE:local}
+  # 存储路径
+  profile: ${STORAGE_PROFILE:profile}
+  # 文件最大大小
+  maxFileSize: ${STORAGE_MAX_FILE:10737418240}
+  # 获取ip地址开关
+  addressEnabled: ${ADDRESS_ENABLE:true}
+  # 验证码类型 math 数组计算 char 字符验证
+  captchaType: ${CAPTCHA_TYPE:math}
+  # 匿名访问地址
+  anonymousUrls:
+    - /test/**
+  # 网络图片本地化忽略域名
+  ignoreNetImageCatchDomains:
+    - xyz.vcluster

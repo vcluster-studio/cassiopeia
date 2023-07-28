@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>xyz.vcluster</groupId>
+    <artifactId>cassiopeia</artifactId>
+    <version>2.0.0-slim</version>
+
+    <properties>
+        <cassiopeia.version>2.0.0-slim</cassiopeia.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
+        <maven-war-plugin.version>3.1.0</maven-war-plugin.version>
+        <spring-boot.version>2.2.13.RELEASE</spring-boot.version>
+        <druid.version>1.2.6</druid.version>
+        <bitwalker.version>1.21</bitwalker.version>
+        <swagger.version>1.6.2</swagger.version>
+        <kaptcha.version>2.3.2</kaptcha.version>
+        <mybatis-spring-boot.version>2.1.4</mybatis-spring-boot.version>
+        <pagehelper.boot.version>1.4.3</pagehelper.boot.version>
+        <fastjson.version>1.2.76</fastjson.version>
+        <commons.io.version>2.11.0</commons.io.version>
+        <commons.fileupload.version>1.4</commons.fileupload.version>
+        <poi.version>4.1.2</poi.version>
+        <jwt.version>0.9.1</jwt.version>
+        <tika-core.version>2.0.0</tika-core.version>
+        <commons.text.version>1.9</commons.text.version>
+    </properties>
+
+    <!-- 依赖声明 -->
+    <dependencyManagement>
+        <dependencies>
+            <!-- SpringBoot的依赖配置-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>xyz.vcluster.cassiopeia</groupId>
+                <artifactId>common</artifactId>
+                <version>${cassiopeia.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>xyz.vcluster.cassiopeia</groupId>
+                <artifactId>authentication</artifactId>
+                <version>${cassiopeia.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>xyz.vcluster.cassiopeia</groupId>
+                <artifactId>system</artifactId>
+                <version>${cassiopeia.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>xyz.vcluster.cassiopeia</groupId>
+                <artifactId>framework</artifactId>
+                <version>${cassiopeia.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>xyz.vcluster.cassiopeia</groupId>
+                <artifactId>quartz</artifactId>
+                <version>${cassiopeia.version}</version>
+            </dependency>
+
+            <!-- 阿里数据库连接池 -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+
+            <!-- 解析客户端操作系统、浏览器等 -->
+            <dependency>
+                <groupId>eu.bitwalker</groupId>
+                <artifactId>UserAgentUtils</artifactId>
+                <version>${bitwalker.version}</version>
+            </dependency>
+
+            <!-- SpringBoot集成mybatis框架 -->
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis-spring-boot.version}</version>
+            </dependency>
+
+            <!-- pagehelper 分页插件 -->
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>${pagehelper.boot.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-models</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+
+            <!-- io常用工具类 -->
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons.io.version}</version>
+            </dependency>
+
+            <!-- 文件上传工具类 -->
+            <dependency>
+                <groupId>commons-fileupload</groupId>
+                <artifactId>commons-fileupload</artifactId>
+                <version>${commons.fileupload.version}</version>
+            </dependency>
+
+            <!-- excel工具 -->
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml</artifactId>
+                <version>${poi.version}</version>
+            </dependency>
+
+            <!-- 阿里JSON解析器 -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+
+            <!-- Token生成与解析-->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>${jwt.version}</version>
+            </dependency>
+
+            <!-- 验证码 -->
+            <dependency>
+                <groupId>com.github.penggle</groupId>
+                <artifactId>kaptcha</artifactId>
+                <version>${kaptcha.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.tika</groupId>
+                <artifactId>tika-core</artifactId>
+                <version>${tika-core.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-text</artifactId>
+                <version>${commons.text.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <modules>
+        <module>cassiopeia-authentication</module>
+        <module>cassiopeia-common</module>
+        <module>cassiopeia-system</module>
+        <module>cassiopeia-framework</module>
+        <module>cassiopeia-quartz</module>
+        <module>cassiopeia-admin</module>
+    </modules>
+
+    <packaging>pom</packaging>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
